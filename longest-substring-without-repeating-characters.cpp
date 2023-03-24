@@ -29,13 +29,14 @@ public:
 
 int main(int argc, char const *argv[])
 {
-  // string str = "pwwkew";
-  string str = "dvdf";
-  // string str = "abcabcbb";
-  // string str = " ";
   Solution s;
+  map<string,int> cases{
+    {"pwwkew",3},{"dvdf", 3},{"abcabcbb",3},{" ",1}
+  };
   
-  cout << s.lengthOfLongestSubstring(str) << endl;
+  for (auto [str, answer] : cases) {
+    cout << s.lengthOfLongestSubstring(str) << " : " << answer << endl;
+  }
 
   return 0;
 }
