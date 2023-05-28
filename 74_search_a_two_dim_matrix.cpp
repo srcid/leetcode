@@ -1,11 +1,12 @@
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
 struct idx {
     const int r, c;
 
-    idx(const int _r, const int _c) : r(_r), c(_c) {}
+    idx(const int r, const int c) : r(r), c(c) {}
 };
 
 class Solution {
@@ -42,3 +43,17 @@ public:
     }
 };
 
+int main(int argc, char const *argv[])
+{
+    vector<vector<int>> matrix = {
+        {1,3,5,7}, 
+        {10,11,16,20},
+        {23,30,34,60}
+    };
+
+    Solution s;
+
+    cout << s.searchMatrix(matrix, 3) << endl;
+
+    return 0;
+}
