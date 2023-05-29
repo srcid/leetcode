@@ -43,6 +43,37 @@ public:
     }
 };
 
+class Solution2 {
+public:
+    int bs(vector<int>& arr, int target) {
+        int i = 0;
+        int j = arr.size() - 1;
+
+        while (i <= j) {
+            int mid = i + (j-i)/2;
+
+            if (arr[mid] > target) j = mid - 1;
+            else if (arr[mid] < target) i = mid + 1;
+            else return mid;
+        }
+
+        return -1;
+    }
+
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        for (auto row: matrix) {
+            int i = 0;
+            int j = row.size();
+
+            if (row[i] <= target && target <= row[j-1]) {
+                return bs(row, target) != -1;
+            }
+        }
+
+        return false;
+    }
+};
+
 int main(int argc, char const *argv[])
 {
     vector<vector<int>> matrix = {
@@ -52,8 +83,9 @@ int main(int argc, char const *argv[])
     };
 
     Solution s;
+    Solution2 s2;
 
-    cout << s.searchMatrix(matrix, 3) << endl;
-
+    cout << s.searchMatrix(matrix, 20) << endl;
+    cout << s2.searchMatrix(matrix, 20) << endl;
     return 0;
 }
