@@ -1,6 +1,7 @@
 from typing import List, Dict
 from pydantic import validate_arguments
 from dataclasses import dataclass
+from collections import Counter
 
 """
 * In this approach, we start solving by the character which occurs the least in the matrix.
@@ -89,14 +90,23 @@ class Solution:
         self.M = len(board)
         self.N = len(board[0])
         self.chars = { char: [] for char in word }
+        available_pos_counter = 0
 
         if len(word) > self.M * self.N:
             return False
-
+        
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if (char := board[i][j]) in self.chars:
                     self.chars[char].append(Position(i,j, False))
+        
+        for char, nocc in Counter(word).items():
+            if len(self.chars[char]) < nocc:
+                return False
+            available_pos_counter += len(self.chars[char])
+
+        if available_pos_counter < len(word):
+            return False
         
         return self.solve(word)
 
