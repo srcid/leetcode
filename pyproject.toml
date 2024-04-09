@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "leetcode"
+version = "0.1.0"
+description = ""
+authors = ["Alcides Ribeiro <alcidesribeirosampaioneto@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^1.26.4"
+rich = "^13.7.1"
+toolz = "^0.12.1"
+pydantic = "^2.6.4"
+
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.23.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
