@@ -1,14 +1,14 @@
 from typing import Iterable, Union
 from itertools import product
 
-def indexes(arr: Iterable) -> Union[tuple[int], tuple[int]]:
+def indexes(arr: Iterable) -> Union[tuple[int], tuple[tuple[int]]]:
     """Returns the indexes of elements in a N-th dimensional array
 
     Args:
         arr (Iterable): N-th dimensional array 
 
     Returns:
-        Union[tuple[int], tuple[int]]: tuple of indexes if arr is 1-th dimension, tuple with tuple
+        Union[tuple[int], tuple[tuple[int]]]: tuple of indexes if arr is 1-th dimension, tuple with tuple
         of index otherwise.
     """
 
