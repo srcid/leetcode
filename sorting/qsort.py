@@ -1,7 +1,7 @@
 from rich import print
 from random import seed, randint
 from queue import Queue
-
+from collections import Counter
 
 def partition(arr, start, end):
     pivot_idx = start
@@ -41,14 +41,21 @@ def iqsort(arr):
 seed(42)
 
 arr = [randint(-19, 20) for _ in range(20)]
-p = [*filter(lambda n: n <= arr[0], arr[1:]), arr[0], *filter(lambda n: n > arr[0], arr[1:])]
-p_idx = partition(arr, 0, len(arr))
+arr_cp = arr.copy()
+pfilter = [*filter(lambda n: n <= arr_cp[0], arr_cp[1:]), arr_cp[0], *filter(lambda n: n > arr_cp[0], arr_cp[1:])]
+p_idx = partition(arr_cp, 0, len(arr_cp))
+comp = (
+    pfilter[p_idx] == arr_cp[p_idx]
+    and Counter(pfilter[:p_idx]) == Counter(arr_cp[:p_idx])
+    and Counter(pfilter[p_idx+1:]) == Counter(arr_cp[p_idx+1:])
+)
 
 print('Partition algorithm')
 print(f'{'initial:':12} {arr}')
 print(f'{'pivot_idx:':12} {p_idx}')
-print(f'{'partitioned:':12} {arr}')
-print(f'{'comp:':12} {p[p_idx] == arr[p_idx]}')
+print(f'{'partitioned:':12} {arr_cp}')
+print(f'{'pfilter:':12} {pfilter}')
+print(f'{'comp:':12} {comp}')
 
 print('QSort algorithm')
 
