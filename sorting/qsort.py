@@ -2,6 +2,8 @@ from rich import print
 from random import seed, randint
 from queue import Queue
 from collections import Counter
+from itertools import filterfalse
+
 
 def partition(arr, start, end):
     pivot_idx = start
@@ -38,6 +40,22 @@ def iqsort(arr):
             q.put((mid + 1, end))
 
 
+def qsortSubArrays(arr): 
+    N = len(arr)
+
+    if N <= 1:
+        return arr
+    
+    pivot, *rest = arr
+    comp = lambda v: v <= pivot
+
+    return [
+        *qsortSubArrays(list(filter(comp, rest))),
+        pivot,
+        *qsortSubArrays(list(filterfalse(comp, rest)))
+    ]
+
+
 seed(42)
 
 arr = [randint(-19, 20) for _ in range(20)]
@@ -68,3 +86,7 @@ print(f'{'qsort:':12} {arr_cp == sorted(arr)}')
 arr_cp = arr
 iqsort(arr_cp)
 print(f'{'iqsort:':12} {arr_cp == sorted(arr)}')
+
+arr_cp = arr
+qsortSubArrays(arr_cp)
+print(f'qsortSubArrays: {arr_cp == sorted(arr)}')
