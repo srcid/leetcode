@@ -3,10 +3,7 @@ from typing import List
 
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        M = len(matrix)
-        N = len(matrix[0])
-
-        if not matrix[0][0] <= target <= matrix[M-1][N-1]:
+        if not matrix[0][0] <= target <= matrix[-1][-1]:
             return False
 
         for row in matrix:
