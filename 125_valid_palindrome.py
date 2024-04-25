@@ -1,3 +1,36 @@
+"""
+With this approach we include the middle element in the comparison
+
+N = len(s)
+s[: (N - 1) // 2 + 1] == s[N // 2 :][::-1]
+
+case N is odd
+('a', 'm', 'a', 'n', 'a', 'p', 'l', 'a', 'n', 'a', 'c')
+('a', 'm', 'a', 'n', 'a', 'p', 'l', 'a', 'n', 'a', 'c')
+
+case N is even
+('r', 'a', 'c', 'e')
+('r', 'a', 'c', 'a')
+
+Which is equivalent to
+s[: N // 2 + 1] == s[(N + 1) // 2 - 1 :][::-1]
+
+With this other approach we exclude the middle element for the comparison. This one
+seems to be slightly slow than the above one.
+
+H, R = divmod(len(s), 2)
+s[:h] == s[: h + r - 1 : -1]
+
+case N is odd
+('a', 'm', 'a', 'n', 'a', 'p', 'l', 'a', 'n', 'a')
+('a', 'm', 'a', 'n', 'a', 'p', 'l', 'a', 'n', 'a')
+
+case N is even
+('r', 'a', 'c', 'e')
+('r', 'a', 'c', 'a')
+
+"""
+
 from math import ceil, floor
 from re import finditer, sub
 
@@ -76,6 +109,9 @@ class Solution7:
 
 class Solution8:
     def isPalindrome(self, s: str) -> bool:
+        """I took this code from leetcode, can't give credit because it doesn't show
+        whom did.
+        """
         s = "".join(map(lambda x: x.lower() if x.isalnum() else "", s))
         n = len(s)
         return s[: (n - 1) // 2 + 1] == s[n // 2 :][::-1]
@@ -83,9 +119,21 @@ class Solution8:
 
 class Solution9:
     def isPalindrome(self, s: str) -> bool:
-        for h, t in zip(
-            filter(str.isalnum, s), filter(str.isalnum, reversed(s))
-        ):
+        for h, t in zip(filter(str.isalnum, s), filter(str.isalnum, reversed(s))):
             if h != t:
                 return False
         return True
+
+
+class Solution10:
+    def isPalindrome(self, s: str) -> bool:
+        s = tuple(c.lower() for c in s if c.isalnum())
+        N = len(s)
+        return s[: (N - 1) // 2 + 1] == s[N // 2 :][::-1]
+
+
+class Solution11:
+    def isPalindrome(self, s: str) -> bool:
+        s = tuple(c.lower() for c in s if c.isalnum())
+        N = len(s)
+        return s[: N // 2 + 1] == s[(N + 1) // 2 - 1 :][::-1]
