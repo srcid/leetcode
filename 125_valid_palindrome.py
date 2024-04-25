@@ -79,3 +79,13 @@ class Solution8:
         s = "".join(map(lambda x: x.lower() if x.isalnum() else "", s))
         n = len(s)
         return s[: (n - 1) // 2 + 1] == s[n // 2 :][::-1]
+
+
+class Solution9:
+    def isPalindrome(self, s: str) -> bool:
+        for h, t in zip(
+            filter(str.isalnum, s), filter(str.isalnum, reversed(s))
+        ):
+            if h != t:
+                return False
+        return True
