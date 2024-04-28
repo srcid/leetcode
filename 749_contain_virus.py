@@ -16,16 +16,10 @@ class Solution:
 
     def spread(self):
         """Spread the virus through the board"""
-        toSpread = set()
         for i in range(self.M):
             for j in range(self.N):
-                if self.isInfected[i][j] == 1:
-                    for x, y in self.adjs((i, j)):
-                        if self.isInfected[x][y] == 0:
-                            toSpread.add((x, y))
-
-        for i, j in toSpread:
-            self.isInfected[i][j] = 1
+                if self.isInfected[i][j] == 0 and 1 in self.adjsv((i, j)):
+                    self.isInfected[i][j] = 1
 
     def setWallsOnBlockDFS(self, point):
         """Set walls into a block of virtus and return the number of walls was set down"""
