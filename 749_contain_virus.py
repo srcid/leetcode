@@ -21,22 +21,20 @@ class Solution:
                 if self.isInfected[i][j] == 0 and 1 in self.adjsv((i, j)):
                     self.isInfected[i][j] = 1
 
-    def setWallsOnBlockDFS(self, point):
+    def setWallsOnBlock(self, p):
         """Set walls into a block of virtus and return the number of walls was set down"""
-        i, j = point
-        cellValue = self.isInfected[i][j]
-        self.isInfected[i][j] = None
+        q = deque([p])
         ans = 0
 
-        for x, y in self.adjs((i, j)):
-            match self.isInfected[x][y]:
-                case 1:
-                    ans += self.setWallsOnBlockDFS((x, y))
-                case 0:  # if a zero was found then we set a wall
-                    ans += 1
-                    cellValue = -1
+        while len(q):
+            i, j = q.pop()
 
-        self.isInfected[i][j] = cellValue
+            match self.isInfected[i][j]:
+                case 1:
+                    self.isInfected[i][j] = -1
+                    q.extend(self.adjs((i, j)))
+                case 0:
+                    ans += 1
 
         return ans
 
@@ -89,7 +87,7 @@ class Solution:
             if pos == None:
                 break
 
-            nwalls = self.setWallsOnBlockDFS(pos)
+            nwalls = self.setWallsOnBlock(pos)
 
             if nwalls == 0:
                 break
