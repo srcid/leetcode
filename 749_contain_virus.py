@@ -81,9 +81,7 @@ class Solution:
                 if self.isInfected[i][j] == None:
                     self.isInfected[i][j] = 1
 
-        return (
-            max(damaged_blocks, key=lambda x: x[1])[0] if len(damaged_blocks) else None
-        )
+        return max(damaged_blocks, default=(None, None), key=lambda x: x[1])[0]
 
     def containVirus(self, isInfected: List[List[int]]) -> int:
         self.isInfected = isInfected
