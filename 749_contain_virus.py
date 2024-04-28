@@ -36,6 +36,10 @@ class Solution:
 
             match self.isInfected[i][j]:
                 case 1:
+                    """In this case we're adding repeating positions to the queue, but
+                    it's correct, because we can put more than one wall on a single
+                    cell. Actually, we can put even 4 walls on a cell.
+                    """
                     self.isInfected[i][j] = -1
                     q.extend(self.adjs((i, j)))
                 case 0:
@@ -44,8 +48,7 @@ class Solution:
         return ans
 
     def damage(self, p):
-        """
-        return the damage of a block of virus can cause and convert all virus
+        """return the damage of a block of virus can cause and convert all virus
         positions to none
         """
         q = deque([p])
