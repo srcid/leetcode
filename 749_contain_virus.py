@@ -130,4 +130,4 @@ if __name__ == "__main__":
     print(s.containVirus(m2), 4)
     print(s.containVirus(m3), 13)
     print(s.containVirus(m4), 0)
-    print(s.containVirus(m5), None)
+    print(s.containVirus(m5), 38)
