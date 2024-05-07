@@ -60,12 +60,18 @@ if __name__ == "__main__":
 
     print("teste 1: ")
     nums1, nums2 = [0, 2, 6], [0, 7, 16, 17, 19]
-    print(sol.findMedianSortedArrays(nums1, nums2), end="\n\n")
+    res = 6.5
+    ans = sol.findMedianSortedArrays(nums1, nums2)
+    print(ans, res, ans == res, end="\n\n")
 
     print("teste 2: ")
     nums1, nums2 = [100001], [100000]
-    print(sol.findMedianSortedArrays(nums1, nums2), end="\n\n")
+    res = 100000.5
+    ans = sol.findMedianSortedArrays(nums1, nums2)
+    print(ans, res, ans == res, end="\n\n")
 
     print("teste 3: ")
     nums1, nums2 = [0, 2, 6, 7], [0, 7, 16, 17, 19]
-    print(sol.findMedianSortedArrays(nums1, nums2))
+    res = 7
+    ans = sol.findMedianSortedArrays(nums1, nums2)
+    print(ans, res, ans == res)
