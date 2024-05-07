@@ -29,10 +29,11 @@ class Solution:
 
                     if any(map(containsVal, (row[i], col[j], grd[i // 3, j // 3]))):
                         return False
-    
+
                     row[i].add(val)
                     col[j].add(val)
                     grd[i // 3, j // 3].add(val)
+                    # It could be an index k = i // 3 * 3 + j // 3
 
         return True
 
