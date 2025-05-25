@@ -61,22 +61,19 @@ def major_linear(A):
     return p if A.count(p) > n // 2 else None
 
 
-def major_prob(A, n):
-    match n:
-        case 0:
-            return None
-        case 1:
-            return A[0]
+def major_prob(A):
+    n = len(A)
+    
+    while len(A) > 0:
+        p = A[0]
+        l, r = [e for e in A if e == p], [e for e in A[1:] if e != p]
 
-    p = A[0]
-
-    l, r = [e for e in A if e == p], [e for e in A if e != p]
-
-    if len(l) > n // 2:
-        return p
-
-    if len(r) > n // 2:
-        return major_prob(r, n)
+        if len(l) > n // 2:
+            return p
+        elif len(r) > n // 2:
+            A = r
+        else:
+            break
 
     return None
 

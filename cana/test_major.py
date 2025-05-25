@@ -59,7 +59,7 @@ def test_major(arr, expected):
 
 @pytest.mark.parametrize("arr, expected", cases)
 def test_major_prob(arr, expected):
-    assert major_prob(arr, len(arr)) == expected
+    assert major_prob(arr) == expected
 
 
 @pytest.mark.parametrize("arr, expected", cases)
